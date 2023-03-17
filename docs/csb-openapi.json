@@ -1,0 +1,818 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "epa-csb-server",
+    "version": "1.0.0",
+    "license": {
+      "name": "CC0-1.0"
+    },
+    "description": "U.S. EPA Clean School Bus data collection system"
+  },
+  "paths": {
+    "/status/app": {
+      "get": {
+        "summary": "/status/app",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [],
+        "parameters": [{ "$ref": "#/components/parameters/scan" }]
+      }
+    },
+    "/status/bap-sam-data": {
+      "get": {
+        "summary": "/status/bap-sam-data",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [],
+        "parameters": [{ "$ref": "#/components/parameters/scan" }]
+      }
+    },
+    "/status/formio-application-schema": {
+      "get": {
+        "summary": "/status/formio-application-schema",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [],
+        "parameters": [{ "$ref": "#/components/parameters/scan" }]
+      }
+    },
+    "/status/formio-payment-request-schema": {
+      "get": {
+        "summary": "/status/formio-payment-request-schema",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [],
+        "parameters": [{ "$ref": "#/components/parameters/scan" }]
+      }
+    },
+    "/login": {
+      "get": {
+        "summary": "/login",
+        "responses": {
+          "302": {
+            "description": "Found"
+          }
+        },
+        "tags": [],
+        "parameters": [{ "$ref": "#/components/parameters/scan" }]
+      }
+    },
+    "/login/assert": {
+      "post": {
+        "summary": "/login/assert",
+        "responses": {
+          "302": {
+            "description": "Found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "<p>Found. Redirecting to <a href=\"http://localhost:3000/\">http://localhost:3000/</a></p>"
+                }
+              }
+            }
+          }
+        },
+        "tags": [],
+        "parameters": [{ "$ref": "#/components/parameters/scan" }]
+      }
+    },
+    "/login/fail": {
+      "get": {
+        "summary": "/login/fail",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [],
+        "parameters": [{ "$ref": "#/components/parameters/scan" }]
+      }
+    },
+    "/logout": {
+      "get": {
+        "summary": "/logout",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [],
+        "parameters": [{ "$ref": "#/components/parameters/scan" }]
+      }
+    },
+    "/logout/callback": {
+      "get": {
+        "summary": "/logout/callback",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [],
+        "parameters": [{ "$ref": "#/components/parameters/scan" }]
+      },
+      "post": {
+        "summary": "/logout/callback",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [],
+        "parameters": [{ "$ref": "#/components/parameters/scan" }]
+      }
+    },
+    "/metadata": {
+      "get": {
+        "summary": "/metadata",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "tags": [],
+        "parameters": [{ "$ref": "#/components/parameters/scan" }]
+      }
+    },
+    "/help/formio-submission/{formType}/{id}": {
+      "get": {
+        "summary": "/help/formio-submission/{id}",
+        "parameters": [
+          {
+            "name": "formType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          { "$ref": "#/components/parameters/scan" }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "userAccess": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "formSchema": {
+                      "type": "object",
+                      "properties": {
+                        "url": {
+                          "type": "string",
+                          "example": "https://formmio/project/form/id"
+                        },
+                        "json": {
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "submission": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": []
+      },
+      "post": {
+        "summary": "/help/formio-submission/{formType}/{id}",
+        "parameters": [
+          {
+            "name": "formType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          { "$ref": "#/components/parameters/scan" }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "userAccess": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "formSchema": {
+                      "type": "object",
+                      "properties": {
+                        "url": {
+                          "type": "string",
+                          "example": "https://formmio/project/form/id"
+                        },
+                        "json": {
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "submission": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": []
+      }
+    },
+    "/api/content": {
+      "get": {
+        "summary": "/api/content",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "tags": [],
+        "parameters": [{ "$ref": "#/components/parameters/scan" }]
+      }
+    },
+    "/api/helpdesk-access": {
+      "get": {
+        "summary": "/api/helpdesk-access",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Unauthorized"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [],
+        "parameters": [{ "$ref": "#/components/parameters/scan" }]
+      }
+    },
+    "/api/csb-data": {
+      "get": {
+        "summary": "/api/csb-data",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "enrollmentClosed": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Unauthorized"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [],
+        "parameters": [{ "$ref": "#/components/parameters/scan" }]
+      }
+    },
+    "/api/epa-user-data": {
+      "get": {
+        "summary": "/api/epa-user-data",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "mail": {
+                      "type": "string",
+                      "example": "last.first@epa.gov"
+                    },
+                    "memberof": {
+                      "type": "string",
+                      "example": "csb_admin,csb_helpdesk"
+                    },
+                    "exp": {
+                      "type": "number",
+                      "example": 1661376902
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Unauthorized"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [],
+        "parameters": [{ "$ref": "#/components/parameters/scan" }]
+      }
+    },
+    "/api/bap-sam-data": {
+      "get": {
+        "summary": "/api/bap-sam-data",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "results": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "entities": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [],
+        "parameters": [{ "$ref": "#/components/parameters/scan" }]
+      }
+    },
+    "/api/bap-application-submissions": {
+      "get": {
+        "summary": "/api/bap-application-submissions",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [],
+        "parameters": [{ "$ref": "#/components/parameters/scan" }]
+      }
+    },
+    "/api/formio-application-submissions": {
+      "get": {
+        "summary": "/api/formio-application-submissions",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [],
+        "parameters": [{ "$ref": "#/components/parameters/scan" }]
+      }
+    },
+    "/api/formio-application-submission": {
+      "post": {
+        "summary": "/api/formio-application-submission",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [],
+        "parameters": [{ "$ref": "#/components/parameters/scan" }]
+      }
+    },
+    "/api/formio-application-submission/{mongoId}": {
+      "get": {
+        "summary": "/api/formio-application-submission/{mongoId}",
+        "parameters": [
+          {
+            "name": "mongoId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          { "$ref": "#/components/parameters/scan" }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "userAccess": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "formSchema": {
+                      "type": "object",
+                      "properties": {
+                        "url": {
+                          "type": "string",
+                          "example": "https://formmio/project/form/id"
+                        },
+                        "json": {
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "submission": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": []
+      },
+      "post": {
+        "summary": "/api/formio-application-submission/{mongoId}",
+        "parameters": [
+          {
+            "name": "mongoId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          { "$ref": "#/components/parameters/scan" }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "tags": []
+      }
+    },
+    "/api/s3/{formType}/{mongoId}/{comboKey}/storage/s3": {
+      "get": {
+        "summary": "/api/s3/{formType}/{mongoId}/{comboKey}/storage/s3",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [],
+        "parameters": [
+          {
+            "name": "formType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mongoId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "comboKey",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          { "$ref": "#/components/parameters/scan" }
+        ]
+      },
+      "post": {
+        "summary": "/api/s3/{formType}/{mongoId}/{comboKey}/storage/s3",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [],
+        "parameters": [
+          {
+            "name": "formType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mongoId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "comboKey",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          { "$ref": "#/components/parameters/scan" }
+        ]
+      }
+    },
+    "/api/formio-payment-request-submissions": {
+      "get": {
+        "summary": "/api/formio-payment-request-submissions",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [],
+        "parameters": [{ "$ref": "#/components/parameters/scan" }]
+      }
+    },
+    "/api/formio-payment-request-submission": {
+      "post": {
+        "summary": "/api/formio-payment-request-submission",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [],
+        "parameters": [{ "$ref": "#/components/parameters/scan" }]
+      }
+    },
+    "/api/formio-payment-request-submission/{rebateId}": {
+      "get": {
+        "summary": "/api/formio-payment-request-submission/{rebateId}",
+        "parameters": [
+          {
+            "name": "rebateId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          { "$ref": "#/components/parameters/scan" }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "userAccess": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "formSchema": {
+                      "type": "object",
+                      "properties": {
+                        "url": {
+                          "type": "string",
+                          "example": "https://formmio/project/form/id"
+                        },
+                        "json": {
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "submission": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": []
+      },
+      "post": {
+        "summary": "/api/formio-payment-request-submission/{rebateId}",
+        "parameters": [
+          {
+            "name": "rebateId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          { "$ref": "#/components/parameters/scan" }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "tags": []
+      }
+    },
+    "/api/delete-formio-payment-request-submission": {
+      "post": {
+        "summary": "/api/delete-formio-payment-request-submission",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "tags": [],
+        "parameters": [{ "$ref": "#/components/parameters/scan" }]
+      }
+    }
+  },
+  "tags": [],
+  "components": {
+    "parameters": {
+      "scan": {
+        "in": "query",
+        "name": "scan",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "enum": ["true"]
+        }
+      }
+    }
+  }
+}
