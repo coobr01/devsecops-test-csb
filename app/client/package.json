@@ -17,7 +17,7 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "@formio/premium": "1.18.4",
+    "@formio/premium": "3.0.0",
     "@formio/react": "5.2.3",
     "@formio/uswds": "2.4.8",
     "@headlessui/react": "1.7.11",
